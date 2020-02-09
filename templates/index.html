@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game</title>
+    <style>
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .box {
+            width: 250px;
+            height: 250px;
+            /* background-color: red; */
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: white;
+            margin-top: 100px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I'm thinking of a number between 1 and 100.</p>
+        <p>Take a guess!</p>
+        {% if session['guess'] %}
+            <h5>{{session['count']}} attemps!</h5>
+            <div class="box" style="background-color: {{session['color']}};">
+                <h2>{{session['hint']}}</h2>
+                {% if session['end_game'] %}
+                    <form action="/play_again" method="post">
+                        <input type="submit" name="again" value="Play again!"><br>
+                    </form>
+                {% endif %}
+            </div>
+        {% endif %}
+        <form action="/" method="post">
+            <input type="text" name="guess"><br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if session['color'] == "green" %}
+            <form action="/leaderboard" method="post">
+                <input type="text" name="player" placeholder="Enter your name.."><br>
+                <input type="submit" name="submit_record" value="Submit Your Name to the Leaderboard!">
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

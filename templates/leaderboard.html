@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        .container {
+            width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        table {
+            width: 300px;
+            margin: auto;
+            text-align: center;
+        }
+        form {
+            padding: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Great Number Game - LEADERBOARD</h1>
+        <table>
+            <tr>
+                <th>Player</th>
+                <th>Number of Attempts</th>
+            </tr>
+            <tr>
+                <td>{{ session['leaderboard']['player_name'] }}</td>
+                <td>{{ session['leaderboard']['number_attempt'] }}</td>
+            </tr>
+        </table>
+        <form action="/play_again" method="post">
+            <input type="submit" name="again" value="Play again!"><br>
+        </form>
+    </div>
+</body>
+</html>
