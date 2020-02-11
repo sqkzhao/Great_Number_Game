@@ -37,23 +37,35 @@ def root_route():
 
 @app.route('/play_again', methods=['POST'])
 def play_again():
-    session.clear()
+    if 'the_number' in session:     # check leaderboard before game start; cause error when click play again (session variables do not exist)
+        session.pop('the_number')
+    if 'guess' in session:
+        session.pop('guess')
+    if 'hint' in session:
+        session.pop('hint')
+    if 'color' in session:
+        session.pop('color')
+    if 'count' in session:
+        session.pop('count')
+    if 'end_game' in session:
+        session.pop('end_game')
+    # session.clear()
     return redirect('/')
 
-@app.route('/leaderboard', methods=['GET','POST'])
+@app.route('/leaderboard', methods=['GET', 'POST'])
 def leaderboard():
     if request.method == 'POST':
         if 'leaderboard' not in session:
-            session['leaderboard'] = {}
-        session['leaderboard']['player_name'] = request.form['player']
-        session['leaderboard']['number_attempt'] = session['count']
+            session['leaderboard'] = []
+        winner_list = session['leaderboard']
+        winner = {'player_name': request.form['player'], 'number_attempt': session['count']}
+        winner_list.append(winner)
+        session['leaderboard'] = winner_list
         return redirect('/leaderboard')
 
     if request.method == 'GET':
-        if 'leaderboard' not in session:
-            session['leaderboard'] = {}
-            
-    return render_template("leaderboard.html")
+        return render_template("leaderboard.html") 
+
 
 if __name__=="__main__":
     app.run(debug=True)

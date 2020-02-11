@@ -28,10 +28,12 @@
                 <th>Player</th>
                 <th>Number of Attempts</th>
             </tr>
+            {% for winner in session['leaderboard'] %}
             <tr>
-                <td>{{ session['leaderboard']['player_name'] }}</td>
-                <td>{{ session['leaderboard']['number_attempt'] }}</td>
+                <td>{{ winner['player_name'] }}</td>
+                <td>{{ winner['number_attempt'] }}</td>
             </tr>
+            {% endfor %}
         </table>
         <form action="/play_again" method="post">
             <input type="submit" name="again" value="Play again!"><br>
