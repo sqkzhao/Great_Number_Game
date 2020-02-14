@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Leaderboard</title>
     <style>
         .container {
@@ -38,6 +39,33 @@
         <form action="/play_again" method="post">
             <input type="submit" name="again" value="Play again!"><br>
         </form>
+=======
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Leaderboard</title>
+</head>
+<body>
+    <div class="container-md text-center">
+        <div class="jumbotron mb-0">
+            <h1 class="display-5  mb-5">Great Number Game - LEADERBOARD</h1>
+            <table class="table col-5 mx-auto mb-5">
+                <thead class="thead-dark">
+                    <tr class="row">
+                        <th class="col">Player</th>
+                        <th class="col">Number of Attempts</th>
+                    </tr>
+                </thead>
+                {% for winner in session['leaderboard'] %}
+                <tr class="row">
+                    <td class="col">{{ winner['player_name'] }}</td>
+                    <td class="col">{{ winner['number_attempt'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <form action="/play_again" method="post">
+                <input type="submit" name="again" value="Play again!" class="btn btn-dark">
+            </form>
+        </div>
+>>>>>>> added bootstrap; updated form/input
     </div>
 </body>
 </html>

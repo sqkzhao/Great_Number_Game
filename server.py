@@ -10,7 +10,11 @@ def root_route():
         if 'the_number' not in session:
             session['the_number'] = random.randint(1, 100)
             session['end_game'] = False
+<<<<<<< HEAD
             session['color'] = 'red'
+=======
+            session['color'] = "red"
+>>>>>>> added bootstrap; updated form/input
             session['count'] = 0
         print(session['the_number'])
 
@@ -26,7 +30,11 @@ def root_route():
             else:
                 session['hint'] = str(session['the_number'])+" was the number!"
                 session['end_game'] = True
+<<<<<<< HEAD
                 session['color'] = 'green'
+=======
+                session['color'] = "green"
+>>>>>>> added bootstrap; updated form/input
             return redirect('/')
         else:
             session['hint'] = "You Lose"
